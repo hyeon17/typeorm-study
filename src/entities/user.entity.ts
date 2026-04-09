@@ -16,9 +16,12 @@ export class UserModel {
   @Column({
     type: 'varchar',
     name: 'title',
-    length: 255,
+    // length: 255,
     nullable: false,
     update: false,
+    select: false,
+    default: 'Default Title',
+    unique: true,
   })
   title: string;
 
