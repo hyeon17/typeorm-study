@@ -1,12 +1,26 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, Post } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserModel } from './entities/user.entity';
+import { Repository } from 'typeorm';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    @InjectRepository(UserModel)
+    private readonly userRepository: Repository<UserModel>,
+  ) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post('users')
+  createUser() {
+    return this.userRepository.save({
+      title: `User ${Date.now()}`,
+    });
   }
+
+  @Get('users')
+  getUsers() {
+    return this.userRepository.find();
+  }
+
+  @Patch('users/:id')
 }
