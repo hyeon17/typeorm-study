@@ -13,7 +13,13 @@ export class UserModel {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    name: 'title',
+    length: 255,
+    nullable: false,
+    update: false,
+  })
   title: string;
 
   @CreateDateColumn()
