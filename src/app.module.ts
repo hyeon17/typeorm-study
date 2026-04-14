@@ -12,7 +12,7 @@ import { UserModel } from './entities/user.entity';
       host: '127.0.0.1',
       port: 5432,
       username: 'postgres',
-      password: 'password',
+      password: 'postgres',
       database: 'typeormstudy',
       entities: [UserModel],
       synchronize: true,
